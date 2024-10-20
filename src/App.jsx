@@ -5,10 +5,10 @@ import L from "leaflet";
 import { BsSun, BsMoon } from "react-icons/bs";
 import { FaEye, FaEyeSlash, FaMapMarkerAlt, FaRegClock } from "react-icons/fa";
 
-// Assure-toi d'importer les styles de Leaflet dans ton fichier CSS
 import "leaflet/dist/leaflet.css";
 
 function App() {
+  document.title = "UrInformation"
   const [ipData, setIpData] = useState(null);
   const [isHidden, setIsHidden] = useState(true);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -62,9 +62,8 @@ function App() {
     document.documentElement.classList.toggle("dark");
   };
 
-  // Custom icon for the marker
   const customMarker = new L.Icon({
-    iconUrl: "/leaflet/marker-icon.png", // Utilisation de l'icône par défaut de Leaflet
+    iconUrl: "/leaflet/marker-icon.png",
     shadowUrl: "https://www.svgrepo.com/show/106426/location-pin.svg",
     iconSize: [25, 41],
     iconAnchor: [12, 41],
@@ -133,14 +132,13 @@ function App() {
           <p>Loading IP data...</p>
         )}
 
-        {/* Leaflet Map */}
         {ipData && (
           <div className="mt-6">
             <MapContainer
               center={[ipData.latitude, ipData.longitude]}
               zoom={13}
               scrollWheelZoom={true}
-              className="w-full h-72 rounded-lg shadow-lg mb-6" // Ajout de margin pour espacer la carte du reste
+              className="w-full h-72 rounded-lg shadow-lg mb-6"
             >
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
